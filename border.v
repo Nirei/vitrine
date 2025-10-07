@@ -23,9 +23,29 @@ pub struct Border implements Component, Container {
   Box
   mut:
     resolved Resolved
-    child &Component = unsafe { nil }
+    child &Component
   pub mut:
+    style &BorderStyle
+}
+
+@[params]
+pub struct BorderInit {
+  Box
+  pub:
+    child &Component
     style &BorderStyle = border_style_curved
+}
+
+pub fn Border.new(init BorderInit) &Border {
+  mut border := &Border{
+    Box: init.Box
+    child: init.child
+    style: init.style
+  }
+
+  border.child.parent = border
+
+  return border
 }
 
 pub fn (mut border Border) draw(mut context tui.Context, transform Vector2) {

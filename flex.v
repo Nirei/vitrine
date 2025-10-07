@@ -12,6 +12,28 @@ pub struct Flex implements Component, Container {
     gap int
 }
 
+@[params]
+pub struct FlexInit {
+  Box
+  pub:
+    children []&Component
+    horizontal bool
+    gap int
+}
+
+pub fn Flex.new(init FlexInit) &Flex {
+  mut flex := &Flex{
+    Box: init.Box
+    children: init.children
+    horizontal: init.horizontal
+    gap: init.gap
+  }
+
+  for mut child in flex.children { child.parent = flex }
+
+  return flex
+}
+
 pub fn (mut flex Flex) draw(mut context tui.Context, transform Vector2) {
   if !flex.visible { return }
 

@@ -12,6 +12,20 @@ pub struct Picture implements Component {
     canvas &Canvas
 }
 
+@[params]
+pub struct PictureInit {
+  Box
+  pub:
+    canvas &Canvas
+}
+
+pub fn Picture.new(init PictureInit) &Picture {
+  return &Picture{
+    Box: init.Box
+    canvas: init.canvas
+  }
+}
+
 pub fn (picture Picture) draw(mut context tui.Context, transform Vector2) {
   if !picture.visible { return }
 

@@ -10,6 +10,20 @@ pub struct Text implements Component {
     value string
 }
 
+@[params]
+pub struct TextInit {
+  Box
+  pub:
+    value string
+}
+
+pub fn Text.new(init TextInit) &Text {
+  return &Text{
+    Box: init.Box
+    value: init.value
+  }
+}
+
 pub fn (text Text) draw(mut context tui.Context, transform Vector2) {
   if !text.visible { return }
 
