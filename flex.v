@@ -1,3 +1,5 @@
+module vitrine
+
 import term.ui as tui
 
 pub struct Flex implements Component, Container {

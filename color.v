@@ -1,3 +1,5 @@
+module vitrine
+
 pub struct Color {
   pub:
     r u8

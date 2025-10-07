@@ -1,3 +1,5 @@
+module vitrine
+
 import math { max }
 
 pub struct Vector2 {

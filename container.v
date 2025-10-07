@@ -1,3 +1,5 @@
+module vitrine
+
 pub interface Container {
   Component
   children() []&Component

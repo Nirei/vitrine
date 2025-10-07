@@ -1,3 +1,5 @@
+module vitrine
+
 import term.ui as tui
 
 pub interface Component {
