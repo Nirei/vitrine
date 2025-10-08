@@ -2,6 +2,13 @@ module vitrine
 
 import term.ui as tui
 
+enum Align as u8 {
+  stretch
+  start
+  end
+  center
+}
+
 pub struct Flex implements Component, Container {
   Box
   mut:
@@ -10,6 +17,7 @@ pub struct Flex implements Component, Container {
   pub mut:
     horizontal bool
     gap int
+    align Align = .stretch
 }
 
 @[params]
@@ -39,6 +47,7 @@ pub fn (mut flex Flex) draw(mut context tui.Context, transform Vector2) {
 
   flex.set_colors(mut context)
   direction := if flex.horizontal { Vector2{ 1, 0 } } else { Vector2{ 0, 1 } }
+  across := if flex.horizontal { Vector2{ 0, 1 } } else { Vector2{ 1, 0 } }
   mut child_transform := transform + flex.offset
 
   mut growers := 0
@@ -66,6 +75,11 @@ pub fn (mut flex Flex) draw(mut context tui.Context, transform Vector2) {
         resolved_size += direction
         remainder -= 1
       }
+    }
+
+    if flex.align == .stretch {
+      // When .stretch, every child fills the complete cross-axis
+      resolved_size = resolved_size * direction + size * across
     }
 
     child.resolved.size = resolved_size
