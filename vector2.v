@@ -36,6 +36,10 @@ pub fn (vector Vector2) scale(scalar int) Vector2 {
   return Vector2 { vector.x * scalar, vector.y * scalar }
 }
 
+pub fn (vector Vector2) divide(scalar int) Vector2 {
+  return Vector2 { vector.x / scalar, vector.y / scalar }
+}
+
 pub fn (vector Vector2) value() (int, int) {
   return vector.x, vector.y
 }

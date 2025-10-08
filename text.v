@@ -33,5 +33,6 @@ pub fn (text Text) draw(mut context tui.Context, transform Vector2) {
 }
 
 pub fn (text Text) natural_size() Vector2 {
+  if !text.visible { return Vector2{} }
   return Vector2 { text.value.len, 1 }
 }
