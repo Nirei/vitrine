@@ -9,7 +9,7 @@ pub enum Align as u8 {
 	center
 }
 
-pub struct Flex implements Component, Container {
+pub struct Flex implements Component {
 	Box
 mut:
 	resolved Resolved
@@ -39,10 +39,6 @@ pub fn Flex.new(init FlexInit) &Flex {
 		align:      init.align
 	}
 
-	for mut child in flex.children {
-		child.parent = flex
-	}
-
 	return flex
 }
 
@@ -52,8 +48,8 @@ pub fn (mut flex Flex) draw(mut context tui.Context, transform Vector2) {
 	}
 
 	flex.set_colors(mut context)
-	main_axis := if flex.horizontal { Vector2{1, 0} } else { Vector2{0, 1} }
-	cross_axis := if flex.horizontal { Vector2{0, 1} } else { Vector2{1, 0} }
+	main_axis := if flex.horizontal { right } else { down }
+	cross_axis := if flex.horizontal { down } else { right }
 	mut child_transform := transform + flex.offset
 
 	mut growers := 0
@@ -82,9 +78,9 @@ pub fn (mut flex Flex) draw(mut context tui.Context, transform Vector2) {
 		mut child := flex.children[index]
 		mut resolved_size := child.natural_size()
 		if child.grow {
-			resolved_size += assigned * main_axis
+			resolved_size.add(assigned * main_axis)
 			if remainder > 0 {
-				resolved_size += main_axis
+				resolved_size.add(main_axis)
 				remainder -= 1
 			}
 		}
@@ -101,7 +97,7 @@ pub fn (mut flex Flex) draw(mut context tui.Context, transform Vector2) {
 
 		child.resolved.size = resolved_size
 		child.draw(mut context, child_transform + align_offset)
-		child_transform += resolved_size * main_axis + main_axis.scale(flex.gap)
+		child_transform.add(resolved_size * main_axis + main_axis.scale(flex.gap))
 	}
 }
 
@@ -110,22 +106,21 @@ pub fn (flex Flex) natural_size() Vector2 {
 		return Vector2{}
 	}
 
-	main_axis := if flex.horizontal { Vector2{1, 0} } else { Vector2{0, 1} }
-	cross_axis := if flex.horizontal { Vector2{0, 1} } else { Vector2{1, 0} }
+	main_axis := if flex.horizontal { right } else { down }
+	cross_axis := if flex.horizontal { down } else { right }
 	mut sum := Vector2{}
 	mut max := Vector2{}
 
 	for child in flex.children {
 		child_size := child.natural_size()
-		sum += child_size + main_axis.scale(flex.gap)
-		max = Vector2.max(max, child_size)
+		sum.add(child_size + main_axis.scale(flex.gap))
+		max.max(child_size)
 	}
 
 	return sum * main_axis + max * cross_axis
 }
 
 pub fn (mut flex Flex) add(mut child Component) {
-	child.parent = flex
 	flex.children << child
 }
 

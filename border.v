@@ -19,31 +19,30 @@ const border_style_bolder = &BorderStyle{`┏`, `┓`, `┗`, `┛`, `━`, `┃
 const border_style_dashbo = &BorderStyle{`┏`, `┓`, `┗`, `┛`, `╍`, `╏`}
 const border_style_double = &BorderStyle{`╔`, `╗`, `╚`, `╝`, `═`, `║`}
 
-pub struct Border implements Component, Container {
-	Box
+pub struct Border implements Component {
+	Flex
 mut:
 	resolved Resolved
-	child    &Component
 pub mut:
 	style &BorderStyle
 }
 
 @[params]
 pub struct BorderInit {
-	Box
+	FlexInit
 pub:
-	child &Component
 	style &BorderStyle = border_style_curved
 }
 
 pub fn Border.new(init BorderInit) &Border {
 	mut border := &Border{
-		Box:   init.Box
-		child: init.child
-		style: init.style
+		Box:        init.FlexInit.Box
+		children:   init.children
+		horizontal: init.horizontal
+		gap:        init.gap
+		align:      init.align
+		style:      init.style
 	}
-
-	border.child.parent = border
 
 	return border
 }
@@ -54,8 +53,8 @@ pub fn (mut border Border) draw(mut context tui.Context, transform Vector2) {
 	}
 
 	child_transform := transform + Vector2{1, 1}
-	border.child.resolved.size = border.resolved.size - Vector2{2, 2}
-	border.child.draw(mut context, child_transform)
+	border.Flex.resolved.size = border.resolved.size - Vector2{2, 2}
+	border.Flex.draw(mut context, child_transform)
 
 	border.set_colors(mut context)
 	x, y := (border.offset + transform).value()
@@ -74,14 +73,5 @@ pub fn (mut border Border) draw(mut context tui.Context, transform Vector2) {
 }
 
 pub fn (border Border) natural_size() Vector2 {
-	return border.child.natural_size() + Vector2{2, 2}
-}
-
-pub fn (mut border Border) add(mut child Component) {
-	child.parent = border
-	border.child = child
-}
-
-pub fn (border Border) children() []&Component {
-	return [border.child]
+	return border.Flex.natural_size() + Vector2{2, 2}
 }

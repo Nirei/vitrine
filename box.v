@@ -4,7 +4,6 @@ import term.ui as tui
 
 struct Box {
 pub mut:
-	parent     ?&Container
 	visible    bool = true
 	z_index    int
 	offset     Vector2

@@ -2,27 +2,25 @@ module vitrine
 
 import term.ui as tui
 
-pub struct Screen implements Component, Container {
-	Box
+pub struct Screen implements Component {
+	Flex
 mut:
 	resolved Resolved
-	child    &Component
 }
 
 @[params]
 pub struct ScreenInit {
-	Box
-pub:
-	child &Component
+	FlexInit
 }
 
 pub fn Screen.new(init ScreenInit) &Screen {
 	mut screen := &Screen{
-		Box:   init.Box
-		child: init.child
+		Box:        init.FlexInit.Box
+		children:   init.children
+		horizontal: init.horizontal
+		gap:        init.gap
+		align:      init.align
 	}
-
-	screen.child.parent = screen
 
 	return screen
 }
@@ -33,25 +31,16 @@ pub fn (mut screen Screen) render(mut context tui.Context) {
 }
 
 pub fn (mut screen Screen) draw(mut context tui.Context, transform Vector2) {
-	mut child := screen.child
+	mut child := screen.Flex
 	child.resolved.size = if child.grow {
 		Vector2{context.window_width, context.window_height}
 	} else {
-		screen.child.natural_size()
+		child.natural_size()
 	}
 
-	screen.child.draw(mut context, transform)
+	child.draw(mut context, transform)
 }
 
 pub fn (screen Screen) natural_size() Vector2 {
 	return Vector2{}
-}
-
-pub fn (mut screen Screen) add(mut child Component) {
-	child.parent = screen
-	screen.child = child
-}
-
-pub fn (screen Screen) children() []&Component {
-	return [screen.child]
 }
