@@ -1,8 +1,7 @@
 module vitrine
 
-// TODO: This needn't be public
-pub struct Resolved {
-  pub mut:
-    size Vector2
-    position Vector2
+struct Resolved {
+pub mut:
+	size     Vector2
+	position Vector2
 }

@@ -1,12 +1,151 @@
 module vitrine
 
 pub struct Color {
-  pub:
-    r u8
-    g u8
-    b u8
+pub:
+	r u8
+	g u8
+	b u8
 }
 
 pub fn (color Color) value() (u8, u8, u8) {
-  return color.r, color.g, color.b
+	return color.r, color.g, color.b
 }
+
+pub const alice_blue = Color{240, 248, 255}
+pub const antique_white = Color{250, 235, 215}
+pub const aqua = Color{0, 255, 255}
+pub const aqua_marine = Color{127, 255, 212}
+pub const azure = Color{240, 255, 255}
+pub const beige = Color{245, 245, 220}
+pub const bisque = Color{255, 228, 196}
+pub const black = Color{0, 0, 0}
+pub const blanched_almond = Color{255, 235, 205}
+pub const blue = Color{0, 0, 255}
+pub const blue_violet = Color{138, 43, 226}
+pub const brown = Color{165, 42, 42}
+pub const burly_wood = Color{222, 184, 135}
+pub const cadet_blue = Color{95, 158, 160}
+pub const chartreuse = Color{127, 255, 0}
+pub const chocolate = Color{210, 105, 30}
+pub const coral = Color{255, 127, 80}
+pub const cornflower_blue = Color{100, 149, 237}
+pub const cornsilk = Color{255, 248, 220}
+pub const crimson = Color{220, 20, 60}
+pub const cyan = Color{0, 255, 255}
+pub const dark_blue = Color{0, 0, 139}
+pub const dark_cyan = Color{0, 139, 139}
+pub const dark_golden_rod = Color{184, 134, 11}
+pub const dark_gray = Color{169, 169, 169}
+pub const dark_green = Color{0, 100, 0}
+pub const dark_khaki = Color{189, 183, 107}
+pub const dark_magenta = Color{139, 0, 139}
+pub const dark_olive_green = Color{85, 107, 47}
+pub const dark_orange = Color{255, 140, 0}
+pub const dark_orchid = Color{153, 50, 204}
+pub const dark_red = Color{139, 0, 0}
+pub const dark_salmon = Color{233, 150, 122}
+pub const dark_sea_green = Color{143, 188, 143}
+pub const dark_slate_blue = Color{72, 61, 139}
+pub const dark_turquoise = Color{0, 206, 209}
+pub const dark_violet = Color{148, 0, 211}
+pub const deep_pink = Color{255, 20, 147}
+pub const deep_sky_blue = Color{0, 191, 255}
+pub const dim_gray = Color{105, 105, 105}
+pub const dodger_blue = Color{30, 144, 255}
+pub const firebrick = Color{178, 34, 34}
+pub const floral_white = Color{255, 250, 240}
+pub const forest_green = Color{34, 139, 34}
+pub const fuchsia = Color{255, 0, 255}
+pub const gainsboro = Color{220, 220, 220}
+pub const ghost_white = Color{248, 248, 255}
+pub const gold = Color{255, 215, 0}
+pub const golden_rod = Color{218, 165, 32}
+pub const gray = Color{128, 128, 128}
+pub const green = Color{0, 128, 0}
+pub const green_yellow = Color{173, 255, 47}
+pub const honeydew = Color{240, 255, 240}
+pub const hot_pink = Color{255, 105, 180}
+pub const indian_red = Color{205, 92, 92}
+pub const indigo = Color{75, 0, 130}
+pub const ivory = Color{255, 255, 240}
+pub const khaki = Color{240, 230, 140}
+pub const lavender = Color{230, 230, 250}
+pub const lavender_blush = Color{255, 240, 245}
+pub const lawn_green = Color{124, 252, 0}
+pub const lemon_chiffon = Color{255, 250, 205}
+pub const light_blue = Color{173, 216, 230}
+pub const light_coral = Color{240, 128, 128}
+pub const light_cyan = Color{224, 255, 255}
+pub const light_golden_rod_yellow = Color{250, 250, 210}
+pub const light_gray = Color{211, 211, 211}
+pub const light_green = Color{144, 238, 144}
+pub const light_pink = Color{255, 182, 193}
+pub const light_salmon = Color{255, 160, 122}
+pub const light_sea_green = Color{32, 178, 170}
+pub const light_sky_blue = Color{135, 206, 250}
+pub const light_slate_gray = Color{119, 136, 153}
+pub const light_steel_blue = Color{176, 196, 222}
+pub const light_yellow = Color{255, 255, 224}
+pub const lime = Color{0, 255, 0}
+pub const lime_green = Color{50, 205, 50}
+pub const linen = Color{250, 240, 230}
+pub const magenta = Color{255, 0, 255}
+pub const maroon = Color{128, 0, 0}
+pub const medium_aqua_marine = Color{102, 205, 170}
+pub const medium_blue = Color{0, 0, 205}
+pub const medium_orchid = Color{186, 85, 211}
+pub const medium_purple = Color{147, 112, 219}
+pub const medium_sea_green = Color{60, 179, 113}
+pub const medium_slate_blue = Color{123, 104, 238}
+pub const medium_spring_green = Color{0, 250, 154}
+pub const medium_turquoise = Color{72, 209, 204}
+pub const medium_violet_red = Color{199, 21, 133}
+pub const midnight_blue = Color{25, 25, 112}
+pub const mint_cream = Color{245, 255, 250}
+pub const moccasin = Color{255, 228, 181}
+pub const navajo_white = Color{255, 222, 173}
+pub const navy = Color{0, 0, 128}
+pub const old_lace = Color{253, 245, 230}
+pub const olive = Color{128, 128, 0}
+pub const olive_drab = Color{107, 142, 35}
+pub const orange = Color{255, 165, 0}
+pub const orange_red = Color{255, 69, 0}
+pub const orchid = Color{218, 112, 214}
+pub const pale_golden_rod = Color{238, 232, 170}
+pub const pale_green = Color{152, 251, 152}
+pub const pale_turquoise = Color{175, 238, 238}
+pub const pale_violet_red = Color{219, 112, 147}
+pub const papaya_whip = Color{255, 239, 213}
+pub const peach_puff = Color{255, 218, 185}
+pub const peru = Color{205, 133, 63}
+pub const pink = Color{255, 192, 203}
+pub const plum = Color{221, 160, 221}
+pub const powder_blue = Color{176, 224, 230}
+pub const purple = Color{128, 0, 128}
+pub const red = Color{255, 0, 0}
+pub const rosy_brown = Color{188, 143, 143}
+pub const royal_blue = Color{65, 105, 225}
+pub const saddle_brown = Color{139, 69, 19}
+pub const salmon = Color{250, 128, 114}
+pub const sandy_brown = Color{244, 164, 96}
+pub const sea_green = Color{46, 139, 87}
+pub const sea_shell = Color{255, 245, 238}
+pub const sienna = Color{160, 82, 45}
+pub const silver = Color{192, 192, 192}
+pub const sky_blue = Color{135, 206, 235}
+pub const slate_blue = Color{106, 90, 205}
+pub const slate_gray = Color{112, 128, 144}
+pub const snow = Color{255, 250, 250}
+pub const spring_green = Color{0, 255, 127}
+pub const steel_blue = Color{70, 130, 180}
+pub const tan = Color{210, 180, 140}
+pub const teal = Color{0, 128, 128}
+pub const thistle = Color{216, 191, 216}
+pub const tomato = Color{255, 99, 71}
+pub const turquoise = Color{64, 224, 208}
+pub const violet = Color{238, 130, 238}
+pub const wheat = Color{245, 222, 179}
+pub const white = Color{255, 255, 255}
+pub const white_smoke = Color{245, 245, 245}
+pub const yellow = Color{255, 255, 0}
+pub const yellow_green = Color{154, 205, 50}
