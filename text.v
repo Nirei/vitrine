@@ -2,7 +2,7 @@ module vitrine
 
 import term.ui as tui
 
-pub struct Text implements Component {
+pub struct Text implements Element {
 	Box
 mut:
 	resolved Resolved

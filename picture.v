@@ -3,7 +3,7 @@ module vitrine
 import term.ui as tui
 import nirei.vrawille { Canvas }
 
-pub struct Picture implements Component {
+pub struct Picture implements Element {
 	Box
 mut:
 	resolved Resolved

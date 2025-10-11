@@ -9,11 +9,11 @@ pub enum Align as u8 {
 	center
 }
 
-pub struct Flex implements Component {
+pub struct Flex implements Element {
 	Box
 mut:
 	resolved Resolved
-	children []&Component
+	children []&Element
 pub mut:
 	horizontal bool
 	gap        int
@@ -24,7 +24,7 @@ pub mut:
 pub struct FlexInit {
 	Box
 pub:
-	children   []&Component
+	children   []&Element
 	horizontal bool
 	gap        int
 	align      Align = .stretch
@@ -120,10 +120,10 @@ pub fn (flex Flex) natural_size() Vector2 {
 	return sum * main_axis + max * cross_axis
 }
 
-pub fn (mut flex Flex) add(mut child Component) {
+pub fn (mut flex Flex) add(mut child Element) {
 	flex.children << child
 }
 
-pub fn (flex Flex) children() []&Component {
+pub fn (flex Flex) children() []&Element {
 	return flex.children
 }

@@ -19,7 +19,7 @@ const border_style_bolder = &BorderStyle{`┏`, `┓`, `┗`, `┛`, `━`, `┃
 const border_style_dashbo = &BorderStyle{`┏`, `┓`, `┗`, `┛`, `╍`, `╏`}
 const border_style_double = &BorderStyle{`╔`, `╗`, `╚`, `╝`, `═`, `║`}
 
-pub struct Border implements Component {
+pub struct Border implements Element {
 	Flex
 mut:
 	resolved Resolved

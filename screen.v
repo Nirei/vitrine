@@ -2,7 +2,7 @@ module vitrine
 
 import term.ui as tui
 
-pub struct Screen implements Component {
+pub struct Screen implements Element {
 	Flex
 mut:
 	resolved Resolved
