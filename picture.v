@@ -25,11 +25,12 @@ pub fn Picture.new(init PictureInit) &Picture {
 	}
 }
 
-pub fn (picture Picture) draw(mut context tui.Context, transform Vector2) {
+pub fn (picture Picture) draw(mut context tui.Context) {
 	if !picture.visible {
 		return
 	}
 
+	transform := picture.resolved.position
 	picture.set_colors(mut context)
 	x, y := (transform + picture.offset).value()
 

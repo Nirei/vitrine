@@ -42,10 +42,12 @@ pub fn Flex.new(init FlexInit) &Flex {
 	return flex
 }
 
-pub fn (mut flex Flex) draw(mut context tui.Context, transform Vector2) {
+pub fn (mut flex Flex) draw(mut context tui.Context) {
 	if !flex.visible {
 		return
 	}
+
+	transform := flex.resolved.position
 
 	flex.set_colors(mut context)
 	main_axis := if flex.horizontal { right } else { down }
@@ -96,7 +98,9 @@ pub fn (mut flex Flex) draw(mut context tui.Context, transform Vector2) {
 		}
 
 		child.resolved.size = resolved_size
-		child.draw(mut context, child_transform + align_offset)
+		child.resolved.position = child_transform + align_offset
+
+		child.draw(mut context)
 		child_transform.add(resolved_size * main_axis + main_axis.scale(flex.gap))
 	}
 }

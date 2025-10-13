@@ -27,12 +27,13 @@ pub fn TextArea.new(init TextAreaInit) &TextArea {
 	}
 }
 
-pub fn (text_area TextArea) draw(mut context tui.Context, transform Vector2) {
+pub fn (text_area TextArea) draw(mut context tui.Context) {
 	if !text_area.visible {
 		return
 	}
 
 	text_area.set_colors(mut context)
+	transform := text_area.resolved.position
 	x, y := (transform + text_area.offset).value()
 	width, height := text_area.resolved.size.value()
 	mut words := text_area.value.split(' ')

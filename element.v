@@ -7,5 +7,5 @@ pub interface Element {
 	natural_size() Vector2
 mut:
 	resolved Resolved
-	draw(mut context tui.Context, transform Vector2)
+	draw(mut context tui.Context)
 }

@@ -25,13 +25,13 @@ pub fn Text.new(init TextInit) &Text {
 	}
 }
 
-pub fn (text Text) draw(mut context tui.Context, transform Vector2) {
+pub fn (text Text) draw(mut context tui.Context) {
 	if !text.visible {
 		return
 	}
 
 	text.set_colors(mut context)
-	x, y := (transform + text.offset).value()
+	x, y := (text.resolved.position + text.offset).value()
 	width, height := text.resolved.size.value()
 	// Ensure background fills complete text area even if text shorter
 	context.draw_rect(x, y, x + width, y + height)

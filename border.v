@@ -47,14 +47,15 @@ pub fn Border.new(init BorderInit) &Border {
 	return border
 }
 
-pub fn (mut border Border) draw(mut context tui.Context, transform Vector2) {
+pub fn (mut border Border) draw(mut context tui.Context) {
 	if !border.visible {
 		return
 	}
 
-	child_transform := transform + Vector2{1, 1}
+	transform := border.resolved.position
 	border.Flex.resolved.size = border.resolved.size - Vector2{2, 2}
-	border.Flex.draw(mut context, child_transform)
+	border.Flex.resolved.position = transform + Vector2{1, 1}
+	border.Flex.draw(mut context)
 
 	border.set_colors(mut context)
 	x, y := (border.offset + transform).value()
