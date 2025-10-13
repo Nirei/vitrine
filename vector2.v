@@ -60,3 +60,8 @@ pub fn (mut vector Vector2) max(operand Vector2) Vector2 {
 	vector.y = math.max(vector.y, operand.y)
 	return vector
 }
+
+pub fn (vector Vector2) inside(start Vector2, size Vector2) bool {
+	end := start + size
+	return vector.x >= start.x && vector.x < end.x && vector.y >= start.y && vector.y < end.y
+}

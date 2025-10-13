@@ -15,14 +15,17 @@ pub mut:
 pub struct TextInit {
 	Box
 pub:
-	value string
+	value    string
+	on_click ?fn ()
 }
 
 pub fn Text.new(init TextInit) &Text {
-	return &Text{
+	mut text := &Text{
 		Box:   init.Box
 		value: init.value
 	}
+	text.resolved.on_click = init.on_click
+	return text
 }
 
 pub fn (text Text) draw(mut context tui.Context) {
@@ -43,4 +46,8 @@ pub fn (text Text) natural_size() Vector2 {
 		return Vector2{}
 	}
 	return Vector2{text.value.len, 1}
+}
+
+pub fn (mut element Text) handle(event &tui.Event) {
+	element.resolved.handle(event)
 }

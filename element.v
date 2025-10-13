@@ -8,4 +8,5 @@ pub interface Element {
 mut:
 	resolved Resolved
 	draw(mut context tui.Context)
+	handle(event &tui.Event)
 }

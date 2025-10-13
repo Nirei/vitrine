@@ -65,3 +65,7 @@ pub fn (text_area TextArea) draw(mut context tui.Context) {
 pub fn (text_area TextArea) natural_size() Vector2 {
 	return Vector2{text_area.width, 1}
 }
+
+pub fn (mut element TextArea) handle(event &tui.Event) {
+	element.resolved.handle(event)
+}

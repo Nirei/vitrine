@@ -131,3 +131,10 @@ pub fn (mut flex Flex) add(mut child Element) {
 pub fn (flex Flex) children() []&Element {
 	return flex.children
 }
+
+pub fn (mut flex Flex) handle(event &tui.Event) {
+	for mut child in flex.children {
+		child.handle(event)
+	}
+	flex.resolved.handle(event)
+}

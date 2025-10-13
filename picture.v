@@ -47,3 +47,7 @@ pub fn (picture Picture) natural_size() Vector2 {
 	x, y := picture.canvas.size()
 	return Vector2{x / 2, y / 4}
 }
+
+pub fn (mut element Picture) handle(event &tui.Event) {
+	element.resolved.handle(event)
+}
