@@ -21,7 +21,13 @@ pub fn (mut resolved Resolved) handle(event &tui.Event) {
 	}
 
 	if event.typ == .mouse_up {
-		resolved.pressed = false
+		defer {
+			resolved.pressed = false
+		}
+
+		if !resolved.pressed {
+			return
+		}
 
 		if !position.inside(resolved.position, resolved.size) {
 			return
