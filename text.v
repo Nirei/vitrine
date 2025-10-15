@@ -35,7 +35,7 @@ pub fn (text Text) draw(mut context tui.Context) {
 
 	text.set_colors(mut context)
 	x, y := (text.resolved.position + text.offset).value()
-	width, height := text.resolved.size.value()
+	width, height := (text.resolved.size - Vector2{1, 1}).value()
 	// Ensure background fills complete text area even if text shorter
 	context.draw_rect(x, y, x + width, y + height)
 	context.draw_text(x, y, text.value)
