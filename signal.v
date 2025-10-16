@@ -1,6 +1,6 @@
 module vitrine
 
-struct Signal[T] {
+pub struct Signal[T] {
 mut:
 	value       T
 	subscribers []fn () = []
